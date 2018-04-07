@@ -10,6 +10,11 @@ public class ShoppingList {
         shoppingList.add(item);
     }
 
+
+    public ArrayList<String> getShoppingList() {
+        return shoppingList;
+    }
+
     public void printShoppingList() {
         System.out.println("You have " + shoppingList.size() + " items in your list");
         for (int i=0; i < shoppingList.size(); i++) {
@@ -17,26 +22,41 @@ public class ShoppingList {
         }
     }
 
-    public void updateItem(int position, String newItem) {
+    public void updateItem(String currentItem, String newItem) {
+        int position = findItem(currentItem);
+        if (position >= 0) {
+            updateItem(position, newItem);
+        }
+    }
+
+    public void removeItem(String item) {
+        int position = findItem(item);
+        if (position >= 0) {
+            removeItem(position);
+        }
+    }
+
+
+    private void updateItem(int position, String newItem) {
         shoppingList.set(position, newItem);
         System.out.println("Shopping item " + (position+1) + " has been modified.");
     }
 
-    public void removeItem(int position) {
-        String theItem = shoppingList.get(position);
+    private void removeItem(int position) {
         shoppingList.remove(position);
         System.out.println("The item in position " + (position+1) + " has been removed." );
     }
 
-    public String findItem(String searchItem) {
-//        boolean exists = shoppingList.contains(searchItem);
+    private int findItem(String searchItem) {
+        return shoppingList.indexOf(searchItem);
+    }
 
-        int position = shoppingList.indexOf(searchItem);
+    public boolean onFile(String searchItem) {
+        int position = findItem(searchItem);
         if(position >= 0) {
-            return shoppingList.get(position);
+            return true;
         }
-
-        return null;
+        return false;
     }
 
 }

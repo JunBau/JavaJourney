@@ -1,5 +1,6 @@
 package com.JunBau;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -36,6 +37,9 @@ public class Main {
                     findItem();
                     break;
                 case 6:
+                    processArrayList();
+                    break;
+                case 7:
                     quit = true;
                     break;
             }
@@ -50,7 +54,8 @@ public class Main {
         System.out.println("\t 3 - To modify and item in the list.");
         System.out.println("\t 4 - To remove and item from the list.");
         System.out.println("\t 5 - To search for an item in the list.");
-        System.out.println("\t 6 - To quit the application.");
+        System.out.println("\t 6 - To display list (efficiently).");
+        System.out.println("\t 7 - To quit the application.");
     }
 
     public static void addItem() {
@@ -59,29 +64,30 @@ public class Main {
     }
 
     public static void updateItem() {
-        System.out.print("Please enter the item position: ");
-        int itemPo = scanner.nextInt();
-        scanner.nextLine();
+        System.out.print("Please enter the current item name: ");
+        String itemPo = scanner.nextLine();
         System.out.println("Enter replacement item: ");
         String replacementItem = scanner.nextLine();
-        shoppingList.updateItem(itemPo-1,replacementItem);
+        shoppingList.updateItem(itemPo,replacementItem);
     }
 
     public static void removeItem() {
-        System.out.print("Please enter the position of the item you would like to remove: ");
-        int itemPo = scanner.nextInt();
-        scanner.nextLine();
-        shoppingList.removeItem(itemPo-1);
+        System.out.print("Please enter the item name to remove: ");
+        String itemPo = scanner.nextLine();
+        shoppingList.removeItem(itemPo);
     }
 
     public static void findItem(){
         System.out.print("Please enter search item: ");
         String searchItem = scanner.nextLine();
-        shoppingList.findItem(searchItem);
-        if(shoppingList.findItem(searchItem) != null) {
+        if(shoppingList.onFile(searchItem)) {
             System.out.println("Found " + searchItem + " in the list.");
         } else {
             System.out.println("Search item does not exist.");
         }
+
+    }
+    public static void processArrayList() {
+        ArrayList<String> newArray = new ArrayList<String>(shoppingList.getShoppingList());
     }
 }
