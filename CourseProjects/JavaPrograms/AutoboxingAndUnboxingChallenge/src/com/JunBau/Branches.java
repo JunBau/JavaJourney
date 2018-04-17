@@ -47,7 +47,7 @@ public class Branches {
     public void printTransactions(String custName) {
         System.out.println("The following transactions under " + custName);
         for(int i =0; i < customers.get(findCustomer(custName)).getTransactions().size(); i++) {
-            System.out.println(customers.get(findCustomer(custName)).getTransactions());
+            System.out.println(customers.get(findCustomer(custName)).getTransactions().get(i));
         }
     }
 
