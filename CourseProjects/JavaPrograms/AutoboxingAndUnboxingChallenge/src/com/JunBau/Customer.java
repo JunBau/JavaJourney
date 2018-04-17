@@ -19,11 +19,6 @@ public class Customer {
         this.name = name;
     }
 
-    public Customer(String name, ArrayList<Double> transactions) {
-        this.name = name;
-        this.transactions = transactions;
-    }
-
     public void addTransaction(Double dbl) {
         transactions.add(dbl);
         System.out.println("Transaction added " + dbl);
@@ -32,11 +27,5 @@ public class Customer {
     public static Customer addCustomer(String name) {
         return new Customer(name);
     }
-
-    public Double printTrans(int i) {
-        return transactions.get(i);
-    }
-
-
 
 }

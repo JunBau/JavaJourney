@@ -7,15 +7,6 @@ public class Bank {
     private ArrayList<Branches> bank = new ArrayList<Branches>();
 
     public Bank() {
-
-    }
-
-    public ArrayList<Branches> getBank() {
-        return bank;
-    }
-
-    public Bank(ArrayList<Branches> bank) {
-        this.bank = bank;
     }
 
     // Bank branch interactions

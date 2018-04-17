@@ -23,11 +23,6 @@ public class Branches {
         this.branchName = branchName;
     }
 
-    public Branches(String branchName, ArrayList<Customer> customers) {
-        this.branchName = branchName;
-        this.customers = customers;
-    }
-
     public void addCustomer(String cusName) {
         customers.add(Customer.addCustomer(cusName));
     }
