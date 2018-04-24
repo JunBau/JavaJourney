@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
+    // Created by Phillip Alejo
     // Most functionality will be in different classes. Game functionality is in BlackJackF
     // The entry point of the program should be clean looking...  Obviously didn't happen. such a messy black jack method.
     // Maybe I should use caps as a currency for teh lolz?
