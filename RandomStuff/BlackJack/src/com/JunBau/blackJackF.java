@@ -1,5 +1,7 @@
 package com.JunBau;
 
+import java.awt.*;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -146,7 +148,7 @@ public class blackJackF {
             try {
                 playerBet = userInput.nextInt();
             } catch(Exception invalidBet) {
-                System.out.println("The fuck is this shit? You trying to mock me?");
+                System.out.println(dealer + ": The fuck is this shit? You trying to mock me?");
                 userInput.next();
                 break;
             }
@@ -154,7 +156,7 @@ public class blackJackF {
             boolean endRound = false;
 
             if(playerBet > currentCurrency) {
-                System.out.println("Are you trying to pull a fast one?");
+                System.out.println(dealer + ": Are you trying to pull a fast one?");
                 break;
             }
 
@@ -297,6 +299,16 @@ public class blackJackF {
         for (int i = 0; i < players.size(); i = 0) {
             System.out.println(players.get(i).getPlayerName() + " has blown up");
             players.remove(i);
+        }
+
+        try {
+            System.out.println("\nLet's do something annoying when you lose :)");
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            Thread.sleep(2500);
+            URI oURL = new URI("https://www.youtube.com/watch?v=VkC63ReV5Jk");
+            desktop.browse(oURL);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 //        userInput.close();
     }
