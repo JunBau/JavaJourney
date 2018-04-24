@@ -229,6 +229,7 @@ public class blackJackF {
                     Thread.sleep(1000);
                     }
                     catch (Exception radPoisoning) {
+                        userInput.next();
                     }
                 }
 
