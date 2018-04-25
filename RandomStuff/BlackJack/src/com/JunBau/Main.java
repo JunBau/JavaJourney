@@ -70,7 +70,7 @@ public class Main {
 
         while (!quit) {
 
-            System.out.println("\n(Test Menu) enter your choice: ");
+            System.out.println("\n(Test Menu) enter your choice: [0 for instructions]");
             try {
                 choice = userInput.nextInt();
             } catch(Exception e) {

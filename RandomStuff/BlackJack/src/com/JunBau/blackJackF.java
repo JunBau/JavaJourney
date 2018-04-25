@@ -12,6 +12,7 @@ public class blackJackF {
 
     private ArrayList<playerOne> players = new ArrayList<playerOne>();
     private static Scanner userInput = new Scanner(System.in);
+    private static ArrayList<String> cardSuitArray = new ArrayList<String>();
 
     public blackJackF () {
         // don't know what to put here tbh...
@@ -44,19 +45,19 @@ public class blackJackF {
         return -1;
     }
 
-    public int getplayerCurrency(String playerName) {
+    private int getplayerCurrency(String playerName) {
         return players.get(findPlayer(playerName)).getPlayerCurrency();
     }
 
-    public void setplayerCurrency(String playerName, int amount) {
+    private void setplayerCurrency(String playerName, int amount) {
         players.get(findPlayer(playerName)).setPlayerCurrency(amount);
     }
 
-    public void cardValues(String playerName) {
+    private void cardValues(String playerName) {
         System.out.print((players.get(findPlayer(playerName)).cardValues()));
     }
 
-    public int cardActualValue(String playerName) {
+    private int cardActualValue(String playerName) {
         return players.get(findPlayer(playerName)).cardValues();
     }
 
@@ -116,6 +117,7 @@ public class blackJackF {
 
     // Testing another way of doing this.
     public void onePlayer(){
+        cardSuites();
         System.out.println("Please enter player name: ");
 
         // Creating the players and the deck.
@@ -162,10 +164,16 @@ public class blackJackF {
 
             try {
                 System.out.println("Dealing cards...");
-                Thread.sleep(1000);
+                for (int i = 0; i < cardSuitArray.size(); i ++) {
+                    Thread.sleep(200);
+                    System.out.print(cardSuitArray.get(i) + " ");
+                    Thread.sleep(300);
+                }
             } catch (Exception dealCard) {
 
             }
+
+            System.out.print("\n\n");
             // Start dealing.
             // Player gets 2.
             drawCard(playerName,dealingDeck);
@@ -181,7 +189,7 @@ public class blackJackF {
                 printCardList(playerName);
 
                 // Display value
-                System.out.println("Total: ");
+                System.out.println("YOUR Total: ");
                 cardValues(playerName);
 
                 // Display dealer cards
@@ -222,10 +230,23 @@ public class blackJackF {
                 //Stand
                 if(response == 2) {
                     break;
-
                 }
 
-                else {
+                if (response == 0) {
+                    try {
+                        System.out.println("Are you invalid?");
+                        for (int i = 0; i < 3; i++) {
+                            Thread.sleep(200);
+                            System.out.print(". ");
+                            Thread.sleep(200);
+                        }
+                    } catch (Exception zeroIsInvalid) {
+
+                    }
+                    System.out.print("\n");
+                }
+
+                else if (response > 2 || response < 0) {
                     try {
                     System.out.println(response + " is not on the menu... rad poisoning got your eyesight?\n");
                     Thread.sleep(1000);
@@ -249,10 +270,15 @@ public class blackJackF {
                 endRound = true;
             }
 
-            // Dealer hits at 16 stands at 17 (will probably change this)
+            // Dealer hits at 16 stands at 17 (will probably change this) Update: Probably will use a random feature for the CPU to take a chance.
             while(cardActualValue(dealer) < 17 && endRound == false) {
                 drawCard(dealer, dealingDeck);
-                System.out.println(dealer + " draws: " + displayLastCard(dealer));
+                try {
+                    System.out.println(dealer + " draws: " + displayLastCard(dealer));
+                    Thread.sleep(400);
+                } catch (Exception dealerDraws) {
+                    // Again, not too sure what to put here...
+                }
             }
 
             // Total for dealer
@@ -310,9 +336,13 @@ public class blackJackF {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        userInput.close();
+
     }
 
-    // Boolean for checking ints
-
+    private static void cardSuites() {
+        cardSuitArray.add("\u2660");
+        cardSuitArray.add("\u2666");
+        cardSuitArray.add("\u2663");
+        cardSuitArray.add("\u2764");
+    }
 }

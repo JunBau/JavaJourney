@@ -14,6 +14,10 @@ public class cards {
         return this.value;
     }
 
+    public cardSuit getSuit() {
+        return this.suit;
+    }
+
     public String toStrings() {
         return this.suit.toString() + " - " + this.value.toString();
     }
