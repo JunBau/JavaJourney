@@ -327,6 +327,10 @@ public class blackJackF {
             players.remove(i);
         }
 
+        for (int i = 0; i < cardSuitArray.size(); i = 0) {
+            cardSuitArray.remove(i);
+        }
+
         try {
             System.out.println("\nLet's do something annoying when you lose :)");
             Desktop desktop = java.awt.Desktop.getDesktop();
