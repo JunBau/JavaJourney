@@ -1,6 +1,5 @@
 package com.JunBau;
 
-import java.sql.Time;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -55,12 +54,15 @@ public class Albums {
         return false;
     }
 
+    // This is where the bug is. This for loop on the size works with ArrayList, but a LinkedList works differently...
+
     public int findTrack (String searchName) {
+
         for (int i = 0; i < AlbumTracks.size(); i++) {
             Songs track = AlbumTracks.get(i);
-
-            if (track.getSongName().equals(searchName));
-            return i;
+            if (track.getSongName().equals(searchName)) {
+                return i;
+            }
         }
         return -1;
     }
@@ -138,6 +140,28 @@ public class Albums {
                     }
                     break;
                 case 4:
+                    // Remove Track
+                    if(listIteratorz.hasPrevious() && listIteratorz.hasNext()) {
+                        listIteratorz.remove();
+                            System.out.println("Moved on to next.");
+                            System.out.println("Now playing: " + listIteratorz.next().getSongName());
+                    }
+                    else if(listIteratorz.hasPrevious() || listIteratorz.hasNext()) {
+                        listIteratorz.remove();
+                        if (listIteratorz.hasPrevious()) {
+                            System.out.println("Moved on to previous.");
+                            System.out.println("Now playing: " + listIteratorz.previous().getSongName());
+                        }
+                        if (listIteratorz.hasNext()) {
+                            System.out.println("Moved on to next.");
+                            System.out.println("Now playing: " + listIteratorz.next().getSongName());
+                        }
+                    }
+                    else {
+                        System.out.println("No songs in your playlist.");
+                    }
+                    break;
+                case 5:
                     System.out.println("Returning to musicplayer");
                     quit = true;
                     break;
@@ -152,7 +176,8 @@ public class Albums {
                 "\n1 - Next song" +
                 "\n2 - Previous song" +
                 "\n3 - Replay song" +
-                "\n4 - Exit playlist");
+                "\n4 - Remove from playlist" +
+                "\n5 - Return to music player");
     }
 
 }

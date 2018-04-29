@@ -68,6 +68,8 @@ public class Music {
         System.out.println("6 - Dashboard");
     }
 
+    // I could probably fix up the logic and make this look cleaner...
+
     public static void addSongToAlbum() {
         System.out.println("Please enter the source album: ");
         String albumName = userInput.nextLine();
@@ -77,15 +79,30 @@ public class Music {
             System.out.println("Please enter the song name to add: ");
             String songName = userInput.nextLine();
 
-            if(albums.get(findAlbum(albumName)).onFile(songName)) {
+            if(trackOnFile(albumName,songName)) {
                 System.out.println("please enter name of playlist to add to: ");
                 String playlistDest = userInput.nextLine();
 
-                addSongToAlbum(playlistDest, songName, albums.get(findAlbum(albumName)).getSongDuration(songName));
+                if(onFile(playlistDest)) {
+                    addSongToAlbum(playlistDest, songName, albums.get(findAlbum(albumName)).getSongDuration(songName));
+                    System.out.println("Successfully added.");
+                }
 
-                System.out.println("Successfully added.");
+                if (!onFile(playlistDest)) {
+                    System.out.println(playlistDest + " does not exist, would you like to create this? (Y/N)");
+                    String response = userInput.nextLine().toLowerCase();
+                    if(response.equals("y")) {
+                        albums.add(Albums.addAlbum(playlistDest));
+                        addSongToAlbum(playlistDest, songName, albums.get(findAlbum(albumName)).getSongDuration(songName));
+                        System.out.println("Successfully added.");
+                    }
+                    else {
+                        System.out.println("Returning to menu.");
+                    }
+                }
+
             }
-            if (!albums.get(findAlbum(albumName)).onFile(songName)) {
+            if (!trackOnFile(albumName,songName)) {
                 System.out.println(songName + " does not exist");
             }
         } if(!onFile(albumName)) {
@@ -112,6 +129,10 @@ public class Music {
 
 
     // Album background functions
+
+    private static boolean trackOnFile (String albumNames, String songName) {
+        return albums.get(findAlbum(albumNames)).onFile(songName);
+    }
 
     private static boolean onFile (String searchName) {
         int position = findAlbum(searchName);

@@ -14,9 +14,9 @@ public class Main {
         System.out.print("Loading");
         try {
             for (int i = 0; i < 3; i++) {
-//                Thread.sleep(600);
+                Thread.sleep(600);
                 System.out.print(".");
-//                Thread.sleep(600);
+                Thread.sleep(600);
             }
         } catch (Exception e) {
             // Still don't know what to put here?
