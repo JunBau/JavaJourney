@@ -10,7 +10,7 @@ public class Albums {
     private String AlbumName;
     private LinkedList<Songs> AlbumTracks = new LinkedList<Songs>();
 
-    public Albums(String albumName) {
+    private Albums(String albumName) {
         this.AlbumName = albumName;
     }
 
@@ -20,10 +20,6 @@ public class Albums {
 
     public String getAlbumName() {
         return AlbumName;
-    }
-
-    public LinkedList<Songs> getAlbumTracks() {
-        return AlbumTracks;
     }
 
     public int getSongDuration (String searchName) {
@@ -56,7 +52,7 @@ public class Albums {
 
     // This is where the bug is. This for loop on the size works with ArrayList, but a LinkedList works differently...
 
-    public int findTrack (String searchName) {
+    private int findTrack(String searchName) {
 
         for (int i = 0; i < AlbumTracks.size(); i++) {
             Songs track = AlbumTracks.get(i);
@@ -171,7 +167,7 @@ public class Albums {
 
     }
 
-    public void printActions() {
+    private void printActions() {
         System.out.println("0 - Instructions" +
                 "\n1 - Next song" +
                 "\n2 - Previous song" +

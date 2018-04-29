@@ -1,13 +1,11 @@
 package com.JunBau;
 
-import java.sql.Time;
-
 public class Songs {
 
     private String SongName;
     private int SongDuration;
 
-    public Songs(String songName, int songDuration) {
+    private Songs(String songName, int songDuration) {
         this.SongName = songName;
         this.SongDuration = songDuration;
     }

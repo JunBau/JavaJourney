@@ -1,6 +1,5 @@
 package com.JunBau;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -57,7 +56,7 @@ public class Music {
 
     }
 
-    public static void printMenuList() {
+    private static void printMenuList() {
         System.out.println("\nPlease choose an action:");
         System.out.println("0 - Functions");
         System.out.println("1 - Create a playlist");
@@ -70,7 +69,7 @@ public class Music {
 
     // I could probably fix up the logic and make this look cleaner...
 
-    public static void addSongToAlbum() {
+    private static void addSongToAlbum() {
         System.out.println("Please enter the source album: ");
         String albumName = userInput.nextLine();
 
@@ -110,7 +109,7 @@ public class Music {
         }
     }
 
-    public static void playPlayList() {
+    private static void playPlayList() {
         System.out.println("Please enter the album name: ");
         String albumName = userInput.nextLine();
         if (onFile(albumName)) {
@@ -136,7 +135,6 @@ public class Music {
 
     private static boolean onFile (String searchName) {
         int position = findAlbum(searchName);
-
         if(position >= 0) {
             return true;
         }
